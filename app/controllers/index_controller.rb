@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'pry'
 
 # Logic
 def get_birth_path_num(birthdate)
@@ -40,10 +41,21 @@ def get_message(birth_path_num)
 	end
 end
 
+def setup_index_view
+
+end
 # Routes
 get '/:birthdate' do
-	
+	birthdate = params[:birthdate]
+	if valid_birthdate(birthdate)
+		birth_path_num = get_birth_path_num(birthdate)
+		@message = get_message(birth_path_num)
 	erb :index
+	else
+		@error = "You should enter a valid birthdate in the form of mmddyyyy."
+		erb :form
+	end
+	
 end
 
 get '/' do
@@ -51,7 +63,7 @@ get '/' do
 end
 
 get '/message/:birth_path_num' do
-	birth_path_num = params[:birth_path_num].to_i
+	birth_path_num = params[:birth_path_num].gsub("/","").to_i
 	@message = get_message(birth_path_num)
 	erb :index
 end
@@ -60,16 +72,17 @@ post '/' do
 	birthdate = params[:birthdate]
 	if valid_birthdate(birthdate)
 		birth_path_num = get_birth_path_num(birthdate)
-		redirect "message/#{birth_path_num}"
+		redirect "/message/#{birth_path_num}"
 	else
-		@error = "Sorry, but your input wasn't valid. Try again!"
+		@error = "You should enter a valid birthdate in the form of mmddyyyy."
 		erb :form
 	end
 end
 
 # Birthdate format Validation
 def valid_birthdate(input)
-	if input.length == 8 && !input.match(/^[0-9]+[0-9]$/)
+	
+	if input.length == 8 && input.match(/^[0-9]+[0-9]$/)
 		true
 	else
 		false
