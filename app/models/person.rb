@@ -40,10 +40,6 @@ class Person < ActiveRecord::Base
 		end
 	end
 
-	def self.setup_index_view
-
-	end
-
 	# Birthdate format Validation
 	def self.valid_birthdate(input)
 		if(input.length == 8 && !input.match(/^[0-9]+[0-9]$/).nil?)

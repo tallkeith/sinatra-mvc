@@ -1,0 +1,5 @@
+<form action="<%= "/people/#{@person.id}" %>" method="post">
+  <input type="hidden" name="_method" value="put" />
+  <input type="hidden" name="id" value="<%= @person.id %>" />
+  <%= erb :"/people/_form" %>
+</form>
