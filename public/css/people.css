@@ -7,3 +7,10 @@
   padding: 20px;  
   background-color: #add8e6;
 }
+
+.errors {
+  color: #dd0000;
+  border: 1px solid #dd0000;
+  padding: 5px;
+  margin-bottom: 5px;
+}

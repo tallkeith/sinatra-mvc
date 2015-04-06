@@ -1,10 +1,3 @@
-<h1>Person</h1>
-<ul>
-   
-    <div class="well col-md-6">
-    	
-		    <li><%= "#{@person.first_name} #{@person.last_name} - #{@person.birthdate}" %></li> <br>
-		    <li><%= "#{@message}" %></li> 
-   		
-   	</div>
-</ul>
+<h1><%= "#{@person.first_name} #{@person.last_name}" %></h1>
+<p>Birthdate: <%= "#{@person.birthdate}" %></p>
+<p><%= "#{@message}" %></p>
